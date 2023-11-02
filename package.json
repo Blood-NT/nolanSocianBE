@@ -1,0 +1,44 @@
+{
+  "name": "testapp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/index.js",
+    "server": "nodemon dist/index.js",
+    "dev": "nodemon src/index.ts"
+  },
+  "dependencies": {
+    "@types/bcryptjs": "^2.4.5",
+    "axios": "^1.5.0",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^16.3.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "modern-async": "^1.1.4",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.6.2",
+    "nodemailer": "^6.9.7",
+    "sequelize": "^6.33.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.1",
+    "@types/cors": "^2.8.15",
+    "@types/express": "^4.17.20",
+    "@types/jsonwebtoken": "^9.0.4",
+    "@types/multer": "^1.4.9",
+    "@types/nodemailer": "^6.4.13",
+    "@types/uuid": "^9.0.6",
+    "nodemon": "^3.0.1",
+    "sequelize-cli": "^6.6.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.2.2"
+  }
+}
