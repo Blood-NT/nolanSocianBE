@@ -3,13 +3,15 @@ import { userModel } from "../models/user.model";
 import { Op } from "sequelize";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { verifyModel } from "../models/token.model";
 const ACCESS_TIME = 1800; // 30m
 const REFRESH_TIME = 864000; // 10 day
 
 
 const loginService = async (data: any) => {
-    const { email, password } = data;
-    const user: User | null = await userModel.findOne({ where: { email: email } });
+    const { id, password } = data;
+    console.log();
+    const user: User | null = await userModel.findOne({ where: { id: id } });
     if (!user) {
         return {statusCode:201}; // user không tồn tại
     }
@@ -24,7 +26,7 @@ const loginService = async (data: any) => {
     const accessToken = await getToken(user.id, user.role, "accessToken");
     const refreshToken = await getToken(user.id, user.role, "refreshToken");
 
-    await userModel.update({ token: refreshToken }, { where: { email: email } });
+    await userModel.update({ token: refreshToken }, { where: { id: id } });
     console.log("accessToken", accessToken);
     console.log("user", user);
     console.log("pass", password);
@@ -33,7 +35,7 @@ const loginService = async (data: any) => {
 
 const registerService = async (newUser: User) => {
     const checkUser = await userModel.findOne(
-        { where: { [Op.or]: [{ email: newUser.email }, { id: newUser.email }] } }
+        { where: { [Op.or]: [{ email: newUser.email }, { id: newUser.id }] } }
     );
 
     if (checkUser && checkUser.status === false) {
@@ -43,8 +45,6 @@ const registerService = async (newUser: User) => {
         // }
         return 202;// user đã tồn tại nhưng chưa xác nhận
     }
-
-
     if (checkUser && checkUser.status === true) {
         return 201;// user đã tồn tại
     }
@@ -52,7 +52,7 @@ const registerService = async (newUser: User) => {
     newUser.status = false;
     newUser.role = 0;
     newUser.token = "";
-    newUser.id = newUser.email;
+    newUser.id = newUser.id;
     const check = await userModel.create(newUser);
     console.log("check add data", check);
 
@@ -86,14 +86,20 @@ const forgotPasswordService = async (email: string) => {
 
 const verifyAccountService = async (email: string, uniqueString: string) => {
     const user: User | null = await userModel.findOne({ where: { email: email } });
+
     if (!user) {
         return 201; // user không tồn tại
     }
-    if (user.token === uniqueString) {
+    else {
+        const check =  await verifyModel.findOne({ where: { email: email, uniqueString: uniqueString } });
+        if (!check) {
+            return 202; // sai uniqueString
+        }
+        else {
         await userModel.update({ status: true }, { where: { email: email } });
         return 200;
+        }
     }
-    return 202;
 }
 const changeRoleService = async (email: string, role: number) => {
     const user: User | null = await userModel.findOne({ where: { email: email } });

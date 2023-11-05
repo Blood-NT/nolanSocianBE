@@ -9,6 +9,11 @@ export const historyModel = sequelize.define<History>
                 type: DataTypes.STRING,
                 primaryKey: true
             },
+            uid:{
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            
             note: {
                 type: DataTypes.STRING,
                 allowNull: false
