@@ -1,0 +1,28 @@
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+import { Request, Response, NextFunction } from "express";
+dotenv.config();
+const authUser = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const accessToken: any = req.headers.access_token;
+        const id = req.body?.id
+        if (!accessToken) {
+            res
+                .status(200)
+                .json({ statusCode: "411", message: "không thể xác thực" });
+            return;
+        }
+        let key = process.env.JWT_SECRET || "ptithcm";
+        const decoded: any = jwt.verify(accessToken, key);
+        if (decoded?.id !== id) {
+            res
+                .status(200)
+                .json({ statusCode: "412", message: "id người dùng không đúng" });
+            return;
+        }
+        next();
+    } catch (error) {
+        res.status(200).json({ statusCode: "410", message: `${error}` });
+    }
+};
+export { authUser };

@@ -1,46 +1,48 @@
 import { Request, Response } from "express";
-
-// import multer from 'multer';
-// const upload = multer();
-
+import { buyTiktokServicer } from "../service/TDSService";
 
 const tiktokCmt = async (req: Request, res: Response) => {
-    console.log("tiktok cmt", req.body);
-    return res.status(200).send("ok tiktok cmt");
+    console.log("tiktokCmt", req.body);
+    const sendTDS = await buyTiktokServicer(req.body, "tiktokCmt");
+    if (sendTDS == 201) {
+        res.status(201).send("lỗi hệ thống, thông báo admin");
+    }
 }
 const tiktokFollow = async (req: Request, res: Response) => {
-    console.log("tiktok follow", req.body);
-    return res.status(200).send("ok tiktok follow");
+    console.log("tiktokFollow", req.body);
+    const sendTDS = await buyTiktokServicer(req.body, "tiktokFollow");
+    if (sendTDS == 201) {
+        res.status(201).send("lỗi hệ thống, thông báo admin");
+    }
 }
 const tiktokLikeVip = async (req: Request, res: Response) => {
-    console.log("tiktok like vip", req.body);
-    return res.status(200).send("ok tiktok like vip");
+    console.log("tiktokLikeVip", req.body);
+    const sendTDS = await buyTiktokServicer(req.body, "tiktokLikeVip");
+    if (sendTDS == 201) {
+        res.status(201).send("lỗi hệ thống, thông báo admin");
+    }
 }
 const tiktokShare = async (req: Request, res: Response) => {
-    console.log("tiktok share", req.body);
-    return res.status(200).send("ok tiktok share");
-}
-const tiktokShareLive = async (req: Request, res: Response) => {
-    console.log("tiktok share live", req.body);
-    return res.status(200).send("ok tiktok share live");
-}
-const tiktokTymVideo = async (req: Request, res: Response) => {
-    console.log("tiktok tym video", req.body);
-    return res.status(200).send("ok tiktok tym video");
-}
-const tiktokPing = async (req: Request, res: Response) => {
-    console.log("tiktok ping", req.body);
-    return res.status(200).send("pong");
+    console.log("tiktokShare", req.body);
+    const sendTDS = await buyTiktokServicer(req.body, "tiktokShare");
+    if (sendTDS == 201) {
+        res.status(201).send("lỗi hệ thống, thông báo admin");
+    }
 }
 
+const tiktokTymVideo = async (req: Request, res: Response) => {
+    console.log("tiktokTymVideo", req.body);
+    const sendTDS = await buyTiktokServicer(req.body, "tiktokTymVideo");
+    if (sendTDS == 201) {
+        res.status(201).send("lỗi hệ thống, thông báo admin");
+    }
+}
 export default {
 
     tiktokCmt,
     tiktokFollow,
     tiktokLikeVip,
     tiktokShare,
-    tiktokShareLive,
     tiktokTymVideo,
-    tiktokPing
 
 }

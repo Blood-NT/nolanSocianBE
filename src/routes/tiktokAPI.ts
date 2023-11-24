@@ -15,10 +15,8 @@ router.post('/like-vip', tiktokController.tiktokLikeVip);
 
 router.post('/share', tiktokController.tiktokShare);
 
-router.post('/share-live', tiktokController.tiktokShareLive);
 
 router.post('/tym-video', tiktokController.tiktokTymVideo);
 
-router.post('/ping', tiktokController.tiktokPing);
 
 export default router;

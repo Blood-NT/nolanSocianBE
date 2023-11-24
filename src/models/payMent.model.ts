@@ -3,23 +3,48 @@ import { DataTypes } from "sequelize";
 import { PayMent } from "../interfaces/payMent.interfaces";
 
 export const payMentModel = sequelize.define<PayMent>
-    ('payMent',
+    ('payment',
         {
-            payCode: {
-                type: DataTypes.STRING,
-                primaryKey: true
+           payID: {
+                type: DataTypes.INTEGER,
+                primaryKey: true,
+                autoIncrement: true,
             },
-            payName: {
+            payCode: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            payStatus: {
+            paytype: {
                 type: DataTypes.INTEGER,
+                allowNull: false
+            },
+            payValue: {
+                type: DataTypes.INTEGER,
+                allowNull: false
+            },
+            payQuantity: {
+                type: DataTypes.INTEGER,
+                allowNull: false
+            },
+            payUser: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            payLink: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            payDate: {
+                type: DataTypes.DATE,
+                allowNull: false
+            },
+            paynote: {
+                type: DataTypes.STRING,
                 allowNull: false
             },
         },
         {
             timestamps: false,
-            tableName: 'payMent'
+            tableName: 'payment'
         }
     )

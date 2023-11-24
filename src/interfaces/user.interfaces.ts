@@ -8,4 +8,5 @@ extends Model <InferAttributes<User>,InferCreationAttributes<User>>{
     token: string;
     role: number;
     status: Boolean;
+    money: number;
     }

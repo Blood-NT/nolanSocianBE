@@ -6,13 +6,23 @@ export const moneyModel = sequelize.define<Money>
     ('money',
         {
             id: {
+                type: DataTypes.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+
+            },
+            uid: {
                 type: DataTypes.STRING,
-                primaryKey: true
+                allowNull: false
             },
             money: {
                 type: DataTypes.INTEGER,
                 allowNull: false
-            }
+            },
+            type: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
         },
         {
             timestamps: false,

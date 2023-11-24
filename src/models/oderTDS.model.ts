@@ -1,8 +1,8 @@
 import sequelize from "../config/connectDB";
 import { DataTypes } from "sequelize";
-import { History } from "../interfaces/history.interfaces";
+import { oderTDS } from "../interfaces/oderTDS.interfaces";
 
-export const historyModel = sequelize.define<History>
+export const OderTDSModel = sequelize.define<oderTDS>
     ('history',
         {
             hid: {

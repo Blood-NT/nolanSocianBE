@@ -22,14 +22,18 @@ export const userModel = sequelize.define<User>
             allowNull: false
         },
         role: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         status: {
 
             type: DataTypes.BOOLEAN,
             allowNull: false
-        }
+        },
+        money: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
     },
         {
             timestamps: false,

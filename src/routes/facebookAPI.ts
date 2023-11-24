@@ -1,9 +1,12 @@
 import express from 'express';
 
 import facebookController from '../controller/facebookController';
+// import multer from 'multer';
+// const upload = multer();
 
 const router = express.Router();
 router.post('/cmt', facebookController.FBcmt);
+
 router.post('/follow', facebookController.FBfollow);
 router.post('/like', facebookController.FBlike);
 router.post('/like-page', facebookController.FBlikePage);

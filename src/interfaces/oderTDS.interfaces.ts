@@ -1,6 +1,6 @@
 import { InferAttributes, InferCreationAttributes, Model } from "sequelize";
 
-export interface History extends Model<InferAttributes<History>, InferCreationAttributes<History>> {
+export interface oderTDS extends Model<InferAttributes<oderTDS>, InferCreationAttributes<oderTDS>> {
     hid: string;
     uid: string;
     note: string;

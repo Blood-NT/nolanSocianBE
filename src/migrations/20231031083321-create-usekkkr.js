@@ -129,6 +129,35 @@ module.exports = {
           allowNull: false
         }
       });
+    await queryInterface.createTable(
+      "fogotPassword",
+
+      {
+        id: {
+          type: DataTypes.NUMBER,
+          primaryKey: true
+        },
+        email: {
+          type: DataTypes.STRING,
+          allowNull: false
+        },
+        uniqueString: {
+          type: DataTypes.STRING,
+          allowNull: false
+        },
+        createAt: {
+          type: DataTypes.DATE,
+          allowNull: false
+        },
+        effectiveSeconds: {
+          type: DataTypes.NUMBER,
+          allowNull: false
+        },
+        password: {
+          type: DataTypes.STRING,
+          allowNull: false
+        },
+      });
   },
 
 };
